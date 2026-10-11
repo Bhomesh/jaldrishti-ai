@@ -1,0 +1,127 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  JalDrishti AI - Serverless Architecture
+  Bharat Builds Tour: Environmental Hacks (Track 02: Heat and Water)
+  Author: Bhomesh Razdan (Lead Architect)
+
+Globals:
+  Function:
+    Timeout: 15
+    MemorySize: 256
+    Runtime: python3.12
+    Environment:
+      Variables:
+        DYNAMODB_FLOOD_TABLE: !Ref UnderpassSensorsTable
+        DYNAMODB_TANKER_TABLE: !Ref TankerLogisticsTable
+        SNS_FLOOD_ALERT_ARN: !Ref FloodEmergencyTopic
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'Content-Type,Authorization'"
+      AllowOrigin: "'*'"
+
+Resources:
+  JalDrishtiApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Name: JalDrishti-Serverless-API
+
+  UnderpassesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../
+      Handler: src.lambda_handlers.handler_get_underpasses
+      Events:
+        GetUnderpasses:
+          Type: Api
+          Properties:
+            RestApiId: !Ref JalDrishtiApi
+            Path: /api/underpasses
+            Method: GET
+
+  StormSimulationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../
+      Handler: src.lambda_handlers.handler_simulate_storm
+      Events:
+        SimulateStorm:
+          Type: Api
+          Properties:
+            RestApiId: !Ref JalDrishtiApi
+            Path: /api/flood/simulate
+            Method: GET
+
+  HeatwaveFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../
+      Handler: src.lambda_handlers.handler_assess_heatwave
+      Events:
+        AssessHeat:
+          Type: Api
+          Properties:
+            RestApiId: !Ref JalDrishtiApi
+            Path: /api/heat/assess
+            Method: GET
+
+  TankerDispatchFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../
+      Handler: src.lambda_handlers.handler_get_tanker_allocations
+      Events:
+        TankerDispatch:
+          Type: Api
+          Properties:
+            RestApiId: !Ref JalDrishtiApi
+            Path: /api/tanker/dispatch
+            Method: GET
+
+  RWHFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../
+      Handler: src.lambda_handlers.handler_calculate_rwh
+      Events:
+        CalculateRWH:
+          Type: Api
+          Properties:
+            RestApiId: !Ref JalDrishtiApi
+            Path: /api/water/rwh
+            Method: GET
+
+  UnderpassSensorsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: JalDrishti-Underpass-Sensors
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: sensor_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: sensor_id
+          KeyType: HASH
+
+  TankerLogisticsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: JalDrishti-Tanker-Logistics
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: colony_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: colony_id
+          KeyType: HASH
+
+  FloodEmergencyTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: JalDrishti-Emergency-Broadcasts
+
+Outputs:
+  ApiEndpoint:
+    Value: !Sub "https://${JalDrishtiApi}.execute-api.${AWS::Region}.amazonaws.com/prod/"

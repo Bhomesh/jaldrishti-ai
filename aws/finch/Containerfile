@@ -1,0 +1,10 @@
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023
+RUN dnf update -y && dnf install -y python3.12 && dnf clean all
+RUN useradd -m -u 1001 jaldrishti
+WORKDIR /app
+COPY --chown=jaldrishti:jaldrishti src/ /app/src/
+COPY --chown=jaldrishti:jaldrishti frontend/ /app/frontend/
+COPY --chown=jaldrishti:jaldrishti aws/ /app/aws/
+USER jaldrishti
+EXPOSE 8081
+ENTRYPOINT ["python3.12", "-m", "src.server", "8081"]

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JalDrishti AI | Urban Flood, Heatwave & Water Scarcity Sentinel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-blue-500 to-amber-400 flex items-center justify-center font-bold text-slate-950 text-xl shadow-lg shadow-blue-500/20">
+          JD
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-lg font-bold text-white tracking-tight">JalDrishti AI</h1>
+            <span class="text-xs px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono">Track 02: Heat & Water</span>
+          </div>
+          <p class="text-xs text-slate-400">Bharat Builds Tour | Lead Architect: Bhomesh Razdan</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="glass-panel p-4">
+        <span class="text-xs text-slate-400">SUBMERGED UNDERPASSES</span>
+        <div class="text-3xl font-extrabold text-blue-400 mt-2" id="kpi-submerged">2 / 7</div>
+        <p class="text-[11px] text-slate-400 mt-1">Minto Bridge & Pul Prahladpur</p>
+      </div>
+      <div class="glass-panel p-4">
+        <span class="text-xs text-slate-400">PEAK WET-BULB TEMP</span>
+        <div class="text-3xl font-extrabold text-amber-400 mt-2" id="kpi-wetbulb">31.4°C</div>
+        <p class="text-[11px] text-slate-400 mt-1">Extreme Heat Stress Warning</p>
+      </div>
+      <div class="glass-panel p-4">
+        <span class="text-xs text-slate-400">TANKER FAIR-SHARE COVERAGE</span>
+        <div class="text-3xl font-extrabold text-emerald-400 mt-2">100%</div>
+        <p class="text-[11px] text-slate-400 mt-1">Anti-Hoarding Protocol Active</p>
+      </div>
+      <div class="glass-panel p-4">
+        <span class="text-xs text-slate-400">STORMWATER CAPACITY</span>
+        <div class="text-3xl font-extrabold text-cyan-400 mt-2">1.85 m³/s</div>
+        <p class="text-[11px] text-slate-400 mt-1">Rational Method Inflow</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 glass-panel p-4 space-y-3">
+        <h2 class="text-base font-semibold text-white flex items-center gap-2">
+          <i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i>
+          Delhi Underpass Submergence & Waterlogging Map
+        </h2>
+        <div id="map" style="height: 480px; border-radius: 0.5rem;"></div>
+      </div>
+
+      <div class="glass-panel p-4 space-y-4 text-xs">
+        <h2 class="text-base font-semibold text-white flex items-center gap-2">
+          <i data-lucide="cloud-rain" class="w-4 h-4 text-cyan-400"></i>
+          Monsoon Storm Runoff Simulator
+        </h2>
+        <div>
+          <label class="block text-slate-400 mb-1">Simulated Rainfall (mm/hour)</label>
+          <input type="range" id="sim-rain" min="10" max="100" value="45" class="w-full">
+          <div class="flex justify-between text-slate-400 mt-1"><span id="val-rain">45 mm/h (Heavy)</span><span>100 mm/h</span></div>
+        </div>
+        <button id="btn-run-sim" class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-medium">Run Hydrological Simulation</button>
+
+        <div id="sim-results" class="bg-slate-900 p-3 rounded border border-slate-800 space-y-2">
+          <div class="text-slate-300 font-semibold">Simulation Output:</div>
+          <div class="text-blue-300" id="sim-text">Total Storm Inflow: 1.85 m³/s | 2 Critical underpasses submerged.</div>
+        </div>
+
+        <div class="border-t border-slate-800 pt-3">
+          <h3 class="font-semibold text-white mb-2">Rainwater Harvesting Sizing</h3>
+          <input type="number" id="rwh-roof" value="120" placeholder="Rooftop Area (m²)" class="w-full bg-slate-900 border border-slate-700 p-2 rounded mb-2 text-white">
+          <button id="btn-calc-rwh" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-medium">Estimate Annual Harvest</button>
+          <div id="rwh-out" class="mt-2 text-emerald-400 font-mono text-[11px]">Harvest Potential: 80,580 Liters/year</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

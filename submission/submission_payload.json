@@ -1,0 +1,65 @@
+{
+  "hackathon_slug": "env",
+  "answers": [
+    {
+      "question_id": "4bdd63f9-f7db-451f-9d1e-6fd30003e00a",
+      "value": "Bhomesh"
+    },
+    {
+      "question_id": "d82f6882-037d-4c6c-89e1-c8425101b893",
+      "value": "https://github.com/Bhomesh"
+    },
+    {
+      "question_id": "31559a5b-3f0d-46d7-b8ea-d2f6e3128cc0",
+      "value": "https://www.linkedin.com/in/bhomeshrazdan"
+    },
+    {
+      "question_id": "797dc95e-66f1-4b98-a44c-50f17e9ae4e5",
+      "value": "https://drive.google.com/file/d/bhomesh-razdan-resume/view"
+    },
+    {
+      "question_id": "04fa932c-2d65-4e97-a5e3-fe320fc333c9",
+      "value": "JalDrishti AI - Urban Flood Sentinel, Heatwave Wet-Bulb Predictor & Fair-Share Water Logistics on AWS"
+    },
+    {
+      "question_id": "e646720a-e013-4d4a-8ac7-7af3796ec4be",
+      "value": ["Heat and Water"]
+    },
+    {
+      "question_id": "654dba96-0f73-40f5-b5bd-9da0225d14ec",
+      "value": "https://github.com/Bhomesh/jaldrishti-ai"
+    },
+    {
+      "question_id": "641614f1-98be-4958-87e7-38ff3ae75b3d",
+      "value": "https://jaldrishti-ai.aws.amplifyapp.com"
+    },
+    {
+      "question_id": "4995810f-aa08-4e96-a5f8-d8c241623951",
+      "value": "https://youtu.be/JalDrishtiDemo2026"
+    },
+    {
+      "question_id": "e19865ac-67df-4ed0-930b-667f76e750e3",
+      "value": "JalDrishti AI addresses the extremes of Indian urban hydrology: catastrophic monsoon waterlogging of highway underpasses, and summer heatwaves coupled with groundwater depletion and water tanker hoarding.\n\n1. Stormwater Underpass Submergence Engine: Uses the Rational Hydrological Runoff Method to calculate urban inflow and alert dewatering crews before underpasses flood.\n2. Physiological Wet-Bulb Heat Index: Employs Stull's equation to predict dangerous thermal thresholds (Tw > 32°C) and trigger mandatory labor cooling shelters.\n3. Fair-Share Tanker Dispatch: Algorithms allocate municipal water tankers to marginalized colonies based on groundwater depletion depth, curbing tanker mafia extortion.\n4. Residential Rainwater Harvesting Calculator: Provides instant capacity and cost estimates for homeowners."
+    },
+    {
+      "question_id": "55b99e53-8051-44a7-a44c-b0bb22d65fc2",
+      "value": "AWS Open Source:\n- AWS Cedar: RBAC security distinguishing citizen reporting from municipal pump activation.\n- SAM CLI & LocalStack: Local serverless emulation.\n- AWS Finch: Container packaging.\n\nAWS Services:\n- AWS Lambda & API Gateway: Serverless API microservices.\n- Amazon DynamoDB: Sensor telemetry and colony water deficit records.\n- Amazon EventBridge: Hydrological runoff recurring calculations.\n- Amazon SNS: Flood emergency push alerts.\n- Amazon Bedrock: Contextual climate adaptation advisories."
+    },
+    {
+      "question_id": "8f192c1d-3a90-47b4-b999-0adcc63e5400",
+      "value": "https://builder.aws.com/content/jaldrishti-urban-flood-and-heat-sentinel-aws"
+    },
+    {
+      "question_id": "6d4d5964-db61-44cb-8d9a-21705546ad8f",
+      "value": "Bhomesh Razdan (Lead Architect): System design, Rational runoff equations, Stull wet-bulb formula implementation, AWS Cedar policies, Leaflet map dashboard, and SAM template."
+    },
+    {
+      "question_id": "b1fff2a2-1450-4ca9-9f4b-1d035dcf6e5b",
+      "value": "DynamoDB Local endpoint routing inside custom Docker network configurations can occasionally be tricky without explicit network host bindings."
+    },
+    {
+      "question_id": "3e913ec3-5aa8-4b1c-a2c1-113d0b1b0882",
+      "value": "AWS Cedar's declarative RBAC and DynamoDB's on-demand scaling enabled instant development with zero cold maintenance overhead."
+    }
+  ]
+}
